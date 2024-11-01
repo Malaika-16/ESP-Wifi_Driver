@@ -13,6 +13,9 @@ static EventGroupHandle_t wifi_events;
 static int CONNECTED = BIT0;
 static int DISCONNECTED = BIT1;
 
+int disconnection_err_count = 0;
+
+char *get_wifi_disconnection_string(wifi_err_reason_t wifi_err_reason);
 
 void event_handler (void* event_handler_arg, esp_event_base_t event_base, int32_t event_id,void* event_data)
 {
@@ -26,9 +29,24 @@ void event_handler (void* event_handler_arg, esp_event_base_t event_base, int32_
         ESP_LOGI(TAG, "WIFI_EVENT_STA_CONNECTED");
         break;
     case WIFI_EVENT_STA_DISCONNECTED:
-        ESP_LOGI(TAG, "WIFI_EVENT_STA_DISCONNECTED");
+    {
+        wifi_event_sta_disconnected_t *wifi_event_sta_disconnected = event_data;
+        ESP_LOGW(TAG, "DISCONNECTED %d: %s", wifi_event_sta_disconnected->reason, 
+                get_wifi_disconnection_string(wifi_event_sta_disconnected->reason));
+        if(wifi_event_sta_disconnected->reason == WIFI_REASON_ASSOC_LEAVE || 
+           wifi_event_sta_disconnected->reason == WIFI_REASON_NO_AP_FOUND || 
+           wifi_event_sta_disconnected->reason == WIFI_REASON_UNSPECIFIED)
+        {
+            if(disconnection_err_count++ < 5)
+            {
+                vTaskDelay(pdMS_TO_TICKS(5000));
+                esp_wifi_connect();
+                break;
+            }
+        }
         xEventGroupSetBits(wifi_events, DISCONNECTED);
         break;
+    }
     case IP_EVENT_STA_GOT_IP:
         ESP_LOGI(TAG, "IP_EVENT_STA_GOT_IP");
         xEventGroupSetBits(wifi_events, CONNECTED);

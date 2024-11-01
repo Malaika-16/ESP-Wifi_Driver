@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "wifi",
-    "project_version":    "v5.3.1-2-g45e16ce154-dirty",
+    "project_version":    "429691d-dirty",
     "project_path":       "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi",
     "idf_path":           "/home/malaika/esp/esp-idf",
     "build_dir":          "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build",
@@ -1510,7 +1510,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/esp-idf/wifi_connect/libwifi_connect.a",
-            "sources": [ "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c" ],
+            "sources": [ "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c", "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect_err.c" ],
             "include_dirs": [ "." ]
         },
         "wifi_provisioning": {
