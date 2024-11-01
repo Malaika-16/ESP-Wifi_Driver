@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "wifi",
-    "project_version":    "429691d-dirty",
+    "project_version":    "50d8006-dirty",
     "project_path":       "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi",
     "idf_path":           "/home/malaika/esp/esp-idf",
     "build_dir":          "/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build",

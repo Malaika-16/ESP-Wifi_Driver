@@ -6,6 +6,6 @@ void app_main()
 {
   nvs_flash_init();
   wifi_connect_init();
-  esp_err_t err = wifi_connect_sta("Malaika", "81313mmh", 10000);
-
+  //esp_err_t err = wifi_connect_sta("Malaika", "81313mmh", 10000);
+  wifi_connect_AP("MyESP32", "password");
 }
