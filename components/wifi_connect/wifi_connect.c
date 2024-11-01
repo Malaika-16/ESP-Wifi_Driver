@@ -6,18 +6,18 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
 
-
 static const char *TAG = "WIFI STATION MODE";
 static esp_netif_t *esp_netif;
 static EventGroupHandle_t wifi_events;
 static int CONNECTED = BIT0;
 static int DISCONNECTED = BIT1;
+static bool reconnect_attempt = false;
 
 int disconnection_err_count = 0;
 
 char *get_wifi_disconnection_string(wifi_err_reason_t wifi_err_reason);
 
-void event_handler (void* event_handler_arg, esp_event_base_t event_base, int32_t event_id,void* event_data)
+void event_handler(void *event_handler_arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     switch (event_id)
     {
@@ -31,17 +31,24 @@ void event_handler (void* event_handler_arg, esp_event_base_t event_base, int32_
     case WIFI_EVENT_STA_DISCONNECTED:
     {
         wifi_event_sta_disconnected_t *wifi_event_sta_disconnected = event_data;
-        ESP_LOGW(TAG, "DISCONNECTED %d: %s", wifi_event_sta_disconnected->reason, 
-                get_wifi_disconnection_string(wifi_event_sta_disconnected->reason));
-        if(wifi_event_sta_disconnected->reason == WIFI_REASON_ASSOC_LEAVE || 
-           wifi_event_sta_disconnected->reason == WIFI_REASON_NO_AP_FOUND || 
-           wifi_event_sta_disconnected->reason == WIFI_REASON_UNSPECIFIED)
+        ESP_LOGW(TAG, "DISCONNECTED %d: %s", wifi_event_sta_disconnected->reason,
+                 get_wifi_disconnection_string(wifi_event_sta_disconnected->reason));
+        if(reconnect_attempt)
         {
-            if(disconnection_err_count++ < 5)
+            if (wifi_event_sta_disconnected->reason == WIFI_REASON_ASSOC_LEAVE ||
+                wifi_event_sta_disconnected->reason == WIFI_REASON_NO_AP_FOUND ||
+                wifi_event_sta_disconnected->reason == WIFI_REASON_UNSPECIFIED)
             {
-                vTaskDelay(pdMS_TO_TICKS(5000));
-                esp_wifi_connect();
-                break;
+                if (disconnection_err_count++ < 5)
+                {
+                    vTaskDelay(pdMS_TO_TICKS(5000));
+                    esp_wifi_connect();
+                    break;
+                }
+                else 
+                {
+                    ESP_LOGE(TAG, "Wifi retries exceeded!!");
+                }
             }
         }
         xEventGroupSetBits(wifi_events, DISCONNECTED);
@@ -54,9 +61,7 @@ void event_handler (void* event_handler_arg, esp_event_base_t event_base, int32_
     default:
         break;
     }
-
 }
-
 
 void wifi_connect_init(void)
 {
@@ -67,11 +72,11 @@ void wifi_connect_init(void)
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, event_handler, NULL));
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, event_handler, NULL));
     ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_RAM));
-
 }
 
-esp_err_t wifi_connect_sta(char* ssid, char* password, int timeout)
+esp_err_t wifi_connect_sta(char *ssid, char *password, int timeout)
 {
+    reconnect_attempt = true;
     wifi_events = xEventGroupCreate();
     esp_netif = esp_netif_create_default_wifi_sta();
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
@@ -86,15 +91,13 @@ esp_err_t wifi_connect_sta(char* ssid, char* password, int timeout)
     {
         return ESP_OK;
     }
-    else 
+    else
     {
         return ESP_FAIL;
-    }  
-    
-
+    }
 }
 
-void wifi_connect_AP(const char* ssid, const char* password)
+void wifi_connect_AP(const char *ssid, const char *password)
 {
     esp_netif = esp_netif_create_default_wifi_ap();
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
@@ -109,4 +112,12 @@ void wifi_connect_AP(const char* ssid, const char* password)
 
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &wifi_config));
     ESP_ERROR_CHECK(esp_wifi_start());
+}
+
+
+void wifi_disconnect(void)
+{
+    reconnect_attempt = false;
+    esp_wifi_stop();
+    esp_netif_destroy(esp_netif);
 }
