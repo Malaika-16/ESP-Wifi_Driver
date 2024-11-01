@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/CMakeFiles/bootloader
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/CMakeFiles/bootloader.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/CMakeFiles/bootloader-complete.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

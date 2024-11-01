@@ -1,0 +1,50 @@
+[0;33m--- esp-idf-monitor 1.5.0 on /dev/ttyACM0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d60ba: wifi_connect_init at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c:18 (discriminator 1)
+[0m
+[0;33m--- 0x40088723: _esp_error_check_failed at /home/malaika/esp/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400814ba: panic_abort at /home/malaika/esp/esp-idf/components/esp_system/panic.c:463
+0x4008872d: esp_system_abort at /home/malaika/esp/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4008f869: abort at /home/malaika/esp/esp-idf/components/newlib/abort.c:38
+0x40088723: _esp_error_check_failed at /home/malaika/esp/esp-idf/components/esp_system/esp_err.c:49
+0x400d60ba: wifi_connect_init at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c:18 (discriminator 1)
+0x400d5ff2: app_main at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/main/main.c:8
+0x40149867: main_task at /home/malaika/esp/esp-idf/components/freertos/app_startup.c:208
+0x400894f9: vPortTaskWrapper at /home/malaika/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d60ba: wifi_connect_init at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c:18 (discriminator 1)
+[0m
+[0;33m--- 0x40088723: _esp_error_check_failed at /home/malaika/esp/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400814ba: panic_abort at /home/malaika/esp/esp-idf/components/esp_system/panic.c:463
+0x4008872d: esp_system_abort at /home/malaika/esp/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4008f869: abort at /home/malaika/esp/esp-idf/components/newlib/abort.c:38
+0x40088723: _esp_error_check_failed at /home/malaika/esp/esp-idf/components/esp_system/esp_err.c:49
+0x400d60ba: wifi_connect_init at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c:18 (discriminator 1)
+0x400d5ff2: app_main at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/main/main.c:8
+0x40149867: main_task at /home/malaika/esp/esp-idf/components/freertos/app_startup.c:208
+0x400894f9: vPortTaskWrapper at /home/malaika/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x400d60ba: wifi_connect_init at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c:18 (discriminator 1)
+[0m
+[0;33m--- 0x40088723: _esp_error_check_failed at /home/malaika/esp/esp-idf/components/esp_system/esp_err.c:49
+[0m
+[0;33m--- 0x400814ba: panic_abort at /home/malaika/esp/esp-idf/components/esp_system/panic.c:463
+0x4008872d: esp_system_abort at /home/malaika/esp/esp-idf/components/esp_system/port/esp_system_chip.c:92
+0x4008f869: abort at /home/malaika/esp/esp-idf/components/newlib/abort.c:38
+0x40088723: _esp_error_check_failed at /home/malaika/esp/esp-idf/components/esp_system/esp_err.c:49
+0x400d60ba: wifi_connect_init at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/components/wifi_connect/wifi_connect.c:18 (discriminator 1)
+0x400d5ff2: app_main at /home/malaika/esp/esp-idf/myprojects/Esp32 Course/Internet Connection/wifi/main/main.c:8
+0x40149867: main_task at /home/malaika/esp/esp-idf/components/freertos/app_startup.c:208
+0x400894f9: vPortTaskWrapper at /home/malaika/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0m
